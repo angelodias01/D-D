@@ -410,8 +410,8 @@ int main() {
     map[7] = (struct Cell){6, -1, -1, 8, -1, -1, "Secret entrance to another area.", -1, 2, "Emerald"};
     map[8] = (struct Cell){7, 9, 6, -1, -1, -1, "Stairs leading down.", -1, -1, "Obsidian"};
     map[9] = (struct Cell){8, 10, 5, -1, -1, -1, "Underground tunnel.", 1, -1, ""};
-    map[10] = (struct Cell){9, -1, 11, -1, 9, -1, "Dark, damp passage.", -1, -1, "Diamond"};
-    map[11] = (struct Cell){-1, -1, 10, 5, -1, -1, "End of the tunnel.", 3, -1, ""};
+    map[10] = (struct Cell){9, -1, 11, -1, -1, -1, "Dark, damp passage.", -1, -1, "Diamond"};
+    map[11] = (struct Cell){10, -1, -1, -1, -1, -1, "End of the tunnel.", 3, -1, ""};
 
     pthread_t playerThread, monsterThread;
     struct ThreadData threadData = {&player, map, &monster, &mutex, &quitFlag, &gameOver};
