@@ -10,7 +10,7 @@
 #define INIT_PLAYER_CELL 0
 #define INIT_MONSTER_CELL 5
 #define MAX_CELL_DESCRIPTION 200
-#define MAX_MAP_CELLS 12  // Agora o mapa tem 12 células
+#define MAX_MAP_CELLS 12 
 #define MAX_PLAYER_HEALTH 150
 #define MAX_MONSTER_HEALTH 200
 #define MAX_MONSTER_LEVEL 5
@@ -387,7 +387,6 @@ int main() {
     InitPlayer(&player);
     InitMonster(&monster);
 
-    // Expandir o mapa para mais células e direções
     map[0] = (struct Cell){-1, 1, -1, -1, -1, -1, "You are at the castle entrance.", -1, -1, ""};
     map[1] = (struct Cell){0, -1, -1, 3, -1, -1, "You are in a corridor.", 2, -1, "Gold"};
     map[2] = (struct Cell){-1, -1, 1, -1, -1, -1, "You enter a large hall.", -1, 3, "Diamonds"};
