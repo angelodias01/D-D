@@ -338,8 +338,21 @@ void MovePlayer(struct Player *pPlayer, struct Cell *map, int direction, struct 
         }
 
         if (map[pPlayer->cell].treasure > 0) {
-            printf("💎 Treasure found: %s! Watch out for monsters!\n", map[pPlayer->cell].treasureName);
+            printf("💎 Treasure found: %s!!\n", map[pPlayer->cell].treasureName);
             pPlayer->treasure = map[pPlayer->cell].treasure;
+        
+            int choice;
+            printf("Do you want to continue exploring? (1 to continue, 0 to leave): ");
+            scanf("%d", &choice);
+        
+            if (choice == 0) {
+                printf("You decide to leave with the treasure.\n");
+                exit(0);
+            } else if (choice == 1) {
+                printf("You continue exploring...\n");
+            } else {
+                printf("Invalid input. Continuing exploration by default.\n");
+            }
         }
 
         if (map[pPlayer->cell].object > 0) {
@@ -387,18 +400,18 @@ int main() {
     InitPlayer(&player);
     InitMonster(&monster);
 
-    map[0] = (struct Cell){-1, 1, -1, -1, -1, -1, "You are at the castle entrance.", -1, -1, ""};
-    map[1] = (struct Cell){0, -1, -1, 3, -1, -1, "You are in a corridor.", 2, -1, "Gold"};
-    map[2] = (struct Cell){-1, -1, 1, -1, -1, -1, "You enter a large hall.", -1, 3, "Diamonds"};
-    map[3] = (struct Cell){-1, -1, 2, -1, -1, -1, "A small room with murals.", -1, -1, "Copper"};
-    map[4] = (struct Cell){-1, 3, -1, -1, -1, -1, "Narrow passage.", 1, -1, ""};
-    map[5] = (struct Cell){-1, -1, 4, -1, -1, -1, "Large cave with high ceiling.", -1, 4, ""};
-    map[6] = (struct Cell){-1, -1, -1, -1, 7, -1, "A hidden chamber.", -1, -1, "Ruby"};
-    map[7] = (struct Cell){6, -1, -1, -1, -1, -1, "Secret entrance to another area.", -1, 2, "Emerald"};
-    map[8] = (struct Cell){-1, 9, -1, -1, -1, -1, "Stairs leading down.", -1, -1, "Obsidian"};
-    map[9] = (struct Cell){8, 10, -1, -1, -1, -1, "Underground tunnel.", 1, -1, ""};
-    map[10] = (struct Cell){9, -1, 11, -1, -1, -1, "Dark, damp passage.", -1, -1, "Diamond"};
-    map[11] = (struct Cell){-1, -1, 10, -1, -1, -1, "End of the tunnel.", 3, -1, ""};
+    map[0] = (struct Cell){-1, 1, 4, -1, -1, -1, "You are at the castle entrance.", -1, -1, ""};
+    map[1] = (struct Cell){0, -1, 3, 4, -1, -1, "You are in a corridor.", 2, -1, "Gold"};
+    map[2] = (struct Cell){1, -1, 5, -1, -1, -1, "You enter a large hall.", -1, 3, "Diamonds"};
+    map[3] = (struct Cell){-1, 1, 2, 5, -1, -1, "A small room with murals.", -1, -1, "Copper"};
+    map[4] = (struct Cell){0, 5, 1, 3, -1, -1, "Narrow passage.", 1, -1, ""};
+    map[5] = (struct Cell){4, -1, 6, 3, -1, -1, "Large cave with high ceiling.", -1, 4, ""};
+    map[6] = (struct Cell){5, -1, 7, -1, 8, -1, "A hidden chamber.", -1, -1, "Ruby"};
+    map[7] = (struct Cell){6, -1, -1, 8, -1, -1, "Secret entrance to another area.", -1, 2, "Emerald"};
+    map[8] = (struct Cell){7, 9, 6, -1, -1, -1, "Stairs leading down.", -1, -1, "Obsidian"};
+    map[9] = (struct Cell){8, 10, 5, -1, -1, -1, "Underground tunnel.", 1, -1, ""};
+    map[10] = (struct Cell){9, -1, 11, -1, 9, -1, "Dark, damp passage.", -1, -1, "Diamond"};
+    map[11] = (struct Cell){-1, -1, 10, 5, -1, -1, "End of the tunnel.", 3, -1, ""};
 
     pthread_t playerThread, monsterThread;
     struct ThreadData threadData = {&player, map, &monster, &mutex, &quitFlag, &gameOver};
